@@ -88,10 +88,10 @@ typedef union YYSTYPE
 /* Line 2058 of yacc.c  */
 #line 14 "Noname2.y"
 
-int in;
-float fl;
-char ch;
-char st[26];
+	int in;
+	float fl;
+	char ch;
+	char st[26];
 
 
 /* Line 2058 of yacc.c  */

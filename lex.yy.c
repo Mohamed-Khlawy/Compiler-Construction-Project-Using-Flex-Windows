@@ -646,101 +646,110 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 10 "Noname1.l"
-{  yylval.st[0]=yyleng-1;
-		int i;
-             for(i=1;i<yylval.st[0];i++)
-	        yylval.st[i]=yytext[i];
-              return CHH;
-		}
+#line 11 "Noname1.l"
+{  
+	yylval.st[0]=yyleng-1;
+	int i;
+	for(i=1;i<yylval.st[0];i++)
+		yylval.st[i]=yytext[i];
+	return CHH;
+}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "Noname1.l"
+#line 19 "Noname1.l"
 {return CHAIN;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 17 "Noname1.l"
+#line 21 "Noname1.l"
 return CHAR;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 18 "Noname1.l"
+#line 23 "Noname1.l"
 {return FLOAT;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 19 "Noname1.l"
+#line 25 "Noname1.l"
 return HALMBZ;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 20 "Noname1.l"
+#line 27 "Noname1.l"
 {return INT;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 21 "Noname1.l"
+#line 29 "Noname1.l"
 {return IF;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 22 "Noname1.l"
+#line 31 "Noname1.l"
 {return THEN;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 23 "Noname1.l"
+#line 33 "Noname1.l"
 {return ELSE;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 "Noname1.l"
-{yylval.in=atoi(yytext);
+#line 35 "Noname1.l"
+{
+	yylval.in=atoi(yytext);
 	return NUM;
-	}
+}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 27 "Noname1.l"
-{ yylval.fl=atof(yytext);
-                    return FLO;} 
+#line 40 "Noname1.l"
+{ 
+	yylval.fl=atof(yytext);
+	return FLO;
+} 
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 29 "Noname1.l"
-{yylval.in=*yytext-'a';
-		return ID;}
+#line 45 "Noname1.l"
+{
+	yylval.in=*yytext-'a';
+	return ID;
+}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 32 "Noname1.l"
-{return *yytext;}
+#line 50 "Noname1.l"
+{
+	return *yytext;
+}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 33 "Noname1.l"
+#line 54 "Noname1.l"
 {return HBL;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 34 "Noname1.l"
-{  yylval.ch=yytext[1];
-	  return CH;
-		}
+#line 56 "Noname1.l"
+{
+	yylval.ch=yytext[1];
+	return CH;
+}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 37 "Noname1.l"
+#line 61 "Noname1.l"
 ;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 39 "Noname1.l"
+#line 63 "Noname1.l"
 ECHO;
 	YY_BREAK
-#line 744 "lex.yy.c"
+#line 753 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1626,5 +1635,4 @@ int main()
 	return 0;
 	}
 #endif
-#line 39 "Noname1.l"
-
+#line 63 "Noname1.l"

@@ -155,10 +155,10 @@ typedef union YYSTYPE
 /* Line 387 of yacc.c  */
 #line 14 "Noname2.y"
 
-int in;
-float fl;
-char ch;
-char st[26];
+	int in;
+	float fl;
+	char ch;
+	char st[26];
 
 
 /* Line 387 of yacc.c  */
@@ -508,13 +508,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    29,    29,    30,    32,    33,    34,    35,    36,    37,
-      38,    39,    40,    42,   127,   128,   129,   132,   135,   144,
-     153,   173,   182,   191,   203,   212,   225,   232,   243,   251,
-     269,   275,   281,   282,   283,   284,   286,   287,   288,   289,
-     290,   291,   293,   315,   333,   355,   357,   370,   389,   390,
-     391,   397,   406,   418,   419,   420,   422,   423,   428,   430,
-     431,   432,   444
+       0,    37,    37,    38,    41,    45,    46,    47,    48,    49,
+      50,    51,    52,    55,   137,   142,   148,   155,   163,   175,
+     187,   211,   220,   232,   247,   259,   275,   288,   304,   317,
+     334,   344,   352,   357,   362,   367,   374,   376,   378,   380,
+     382,   384,   388,   415,   437,   464,   471,   487,   511,   514,
+     517,   526,   539,   556,   562,   568,   575,   581,   590,   597,
+     603,   609,   624
 };
 #endif
 
@@ -1491,654 +1491,709 @@ yyreduce:
     {
         case 4:
 /* Line 1792 of yacc.c  */
-#line 32 "Noname2.y"
-    {printf("the result = %g \n",(yyvsp[(1) - (1)].fl));}
+#line 42 "Noname2.y"
+    {
+	printf("the result = %g \n",(yyvsp[(1) - (1)].fl));
+}
     break;
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 35 "Noname2.y"
+#line 47 "Noname2.y"
     {printf("the result = %d \n",(yyvsp[(1) - (1)].in));}
     break;
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 36 "Noname2.y"
+#line 48 "Noname2.y"
     {printf("the result = %d \n",(yyvsp[(1) - (1)].in));}
     break;
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 42 "Noname2.y"
+#line 56 "Noname2.y"
     { 
-						int z=0,y=0;
-						if(ln[show[1]]==1)
-						 z=1;
-						 if (dd[2]==1)
-						   {y=1;
-						if(dd[0]==1)
-						loc[dd[1]]--;
-						else if(dd[0]==2)
-						loc[dd[1]]++;
-						
-						   }
-						   else 
-						   x[dd[1]]--;
-						
-						if(show[0]==1&& dd[0]==1)
-						{ //printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", $3, z, show[2], y, $7);
-						if(y==1&&z==1)
-						{int i;
-						for(i=(yyvsp[(3) - (11)].in); loc[show[1]] < show[2] ; loc[dd[1]] += (yyvsp[(7) - (11)].in) )
+	int z=0,y=0;
+	if (ln[show[1]]==1)
+		z=1;
+	if (dd[2]==1)
+	{
+		y=1;
+		if(dd[0]==1)
+			loc[dd[1]]--;
+		else if(dd[0]==2)
+			loc[dd[1]]++;
+	}
+	else 
+		x[dd[1]]--;
+							
+	if(show[0]==1&& dd[0]==1)
+	{ 
+		//printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", $3, z, show[2], y, $7);
+		if(y==1&&z==1)
+		{
+			int i;
+			for(i=(yyvsp[(3) - (11)].in); loc[show[1]] < show[2] ; loc[dd[1]] += (yyvsp[(7) - (11)].in) )
+				printf("loop is excuted \n");
+		}
 
-						  printf("loop is excuted \n");
+		else if(y==0&&z==0)
+		{
+			int i;
+			for(i=(yyvsp[(3) - (11)].in); x[show[1]] < show[2] ; x[dd[1]] += (yyvsp[(7) - (11)].in) )
+				printf("loop is excuted \n");
+		}
 
-						  } 
-						  else if(y==0&&z==0)
-						{int i;
-						for(i=(yyvsp[(3) - (11)].in); x[show[1]] < show[2] ; x[dd[1]] += (yyvsp[(7) - (11)].in) )
+		else  if(y==1&&z==0)
+		{
+			int i;
+			for(i=(yyvsp[(3) - (11)].in); x[show[1]] < show[2] ; loc[dd[1]] += (yyvsp[(7) - (11)].in) )
+				printf("loop is excuted \n");
+		}
 
-						  printf("loop is excuted \n");
+		else  
+		{
+			int i;
+			for(i=(yyvsp[(3) - (11)].in); loc[show[1]] < show[2] ; x[dd[1]] += (yyvsp[(7) - (11)].in) )
+				printf("loop is excuted \n");
+		}
+	}
 
-						  } else  if(y==1&&z==0)
-						{int i;
-						for(i=(yyvsp[(3) - (11)].in); x[show[1]] < show[2] ; loc[dd[1]] += (yyvsp[(7) - (11)].in) )
+	else 
+		if(show[0]==2&& dd[0]==2)
+		{
+			printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", (yyvsp[(3) - (11)].in), z, show[2], y, (yyvsp[(7) - (11)].in));
 
-						  printf("loop is excuted \n");
+			if(y==1&&z==1)
+			{
+				int i;
+				for(i=(yyvsp[(3) - (11)].in); loc[show[1]] > show[2] ; loc[dd[1]] -= (yyvsp[(7) - (11)].in) )
+					printf("loop is excuted \n");
+			}
 
-						  } 
-						  else  
-						{int i;
-						for(i=(yyvsp[(3) - (11)].in); loc[show[1]] < show[2] ; x[dd[1]] += (yyvsp[(7) - (11)].in) )
-
-						  printf("loop is excuted \n");
-
-						  } 
-						  }else 
-						  if(show[0]==2&& dd[0]==2)
-						{ printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", (yyvsp[(3) - (11)].in), z, show[2], y, (yyvsp[(7) - (11)].in));
-						if(y==1&&z==1)
-						{int i;
-						for(i=(yyvsp[(3) - (11)].in); loc[show[1]] > show[2] ; loc[dd[1]] -= (yyvsp[(7) - (11)].in) )
-
-						  printf("loop is excuted \n");
-
-						  } 
-						  else if(y==0&&z==0)
-						{int i;
-						for(i=(yyvsp[(3) - (11)].in); x[show[1]] > show[2] ; x[dd[1]] -= (yyvsp[(7) - (11)].in) )
-
-						  printf("loop is excuted \n");
-
-						  } else  if(y==1&&z==0)
-						{int i;
-						for(i=(yyvsp[(3) - (11)].in); x[show[1]] > show[2] ; loc[dd[1]] -= (yyvsp[(7) - (11)].in) )
-
-						  printf("loop is excuted \n");
-
-						  } 
-						  else  
-						{int i;
-						for(i=(yyvsp[(3) - (11)].in); loc[show[1]] > show[2] ; x[dd[1]] -= (yyvsp[(7) - (11)].in) )
-
-						  printf("loop is excuted \n");
-
-						  }
-						  
-
-
-							}  
+			else if(y==0&&z==0)
+			{
+				int i;
+				for(i=(yyvsp[(3) - (11)].in); x[show[1]] > show[2] ; x[dd[1]] -= (yyvsp[(7) - (11)].in) )
+					printf("loop is excuted \n");
+			}
+			else  if(y==1&&z==0)
+			{
+				int i;
+				for(i=(yyvsp[(3) - (11)].in); x[show[1]] > show[2] ; loc[dd[1]] -= (yyvsp[(7) - (11)].in) )
+					printf("loop is excuted \n");
+			}
+			else  
+			{
+				int i;
+				for(i=(yyvsp[(3) - (11)].in); loc[show[1]] > show[2] ; x[dd[1]] -= (yyvsp[(7) - (11)].in) )
+					printf("loop is excuted \n");
+			}
+		}  
 }
     break;
 
   case 14:
 /* Line 1792 of yacc.c  */
-#line 127 "Noname2.y"
-    {(yyval.in)=(yyvsp[(1) - (1)].in);}
+#line 138 "Noname2.y"
+    {
+	(yyval.in)=(yyvsp[(1) - (1)].in);
+}
     break;
 
   case 15:
 /* Line 1792 of yacc.c  */
-#line 128 "Noname2.y"
-    {(yyval.in)=(yyvsp[(1) - (1)].in);}
+#line 143 "Noname2.y"
+    {
+	(yyval.in)=(yyvsp[(1) - (1)].in);
+}
     break;
 
   case 16:
 /* Line 1792 of yacc.c  */
-#line 129 "Noname2.y"
-    {show[0]=1;
-		     show[1]=(yyvsp[(1) - (3)].in);
-		     show[2]=(yyvsp[(3) - (3)].fl);}
+#line 149 "Noname2.y"
+    {
+	show[0]=1;
+	show[1]=(yyvsp[(1) - (3)].in);
+	show[2]=(yyvsp[(3) - (3)].fl);
+}
     break;
 
   case 17:
 /* Line 1792 of yacc.c  */
-#line 132 "Noname2.y"
-    {show[0]=2;
-		     show[1]=(yyvsp[(1) - (3)].in);
-		     show[2]=(yyvsp[(3) - (3)].fl);}
+#line 156 "Noname2.y"
+    {
+	show[0]=2;
+	show[1]=(yyvsp[(1) - (3)].in);
+	show[2]=(yyvsp[(3) - (3)].fl);
+}
     break;
 
   case 18:
 /* Line 1792 of yacc.c  */
-#line 135 "Noname2.y"
+#line 164 "Noname2.y"
     {
-				if(ln[(yyvsp[(2) - (4)].in)]==0)
-				 {loc[(yyvsp[(2) - (4)].in)]= (yyvsp[(4) - (4)].fl);
-				 (yyval.in)=loc[(yyvsp[(2) - (4)].in)];
-				ln[(yyvsp[(2) - (4)].in)]=1;
-				 }
-				 else 
-				 printf("the variable is decleare before");
-				}
+	if(ln[(yyvsp[(2) - (4)].in)]==0)
+	{
+		loc[(yyvsp[(2) - (4)].in)]= (yyvsp[(4) - (4)].fl);
+		(yyval.in)=loc[(yyvsp[(2) - (4)].in)];
+		ln[(yyvsp[(2) - (4)].in)]=1;
+	}
+	else 
+		printf("the variable is decleare before");
+}
     break;
 
   case 19:
 /* Line 1792 of yacc.c  */
-#line 144 "Noname2.y"
+#line 176 "Noname2.y"
     {
-                      if(name[(yyvsp[(1) - (3)].in)]==1)
-			{
-			(yyval.in)=x[(yyvsp[(1) - (3)].in)];
-			x[(yyvsp[(1) - (3)].in)]=(yyvsp[(3) - (3)].fl);
-			}
-			else 
-			printf("this variable is decleared before or not decleare before");
-			}
+	if(name[(yyvsp[(1) - (3)].in)]==1)
+	{
+		(yyval.in)=x[(yyvsp[(1) - (3)].in)];
+		x[(yyvsp[(1) - (3)].in)]=(yyvsp[(3) - (3)].fl);
+	}
+	else 
+		printf("this variable is decleared before or not decleare before");
+}
     break;
 
   case 20:
 /* Line 1792 of yacc.c  */
-#line 153 "Noname2.y"
-    { if(name[(yyvsp[(3) - (4)].in)]==1)
-                          printf("%d \n",x[(yyvsp[(3) - (4)].in)]);
-			else
-			 if (name[(yyvsp[(3) - (4)].in)]==2)
-			  printf("%g \n",y[(yyvsp[(3) - (4)].in)]);
-			   else 
-			   if(name[(yyvsp[(3) - (4)].in)]==3)
-			  printf("%c \n",z[(yyvsp[(3) - (4)].in)]);
-			  else 
-			  if(name[(yyvsp[(3) - (4)].in)]==4)
-			   {
-			   int i;
-			   for(i=1;i<w[(yyvsp[(3) - (4)].in)][0];i++)
-			     printf("%c",w[(yyvsp[(3) - (4)].in)][i]);
-			     printf("\n");
-			  }
-			  else 
-			printf("variable is not decleared");
+#line 188 "Noname2.y"
+    {
+	if(name[(yyvsp[(3) - (4)].in)]==1)
+		printf("%d \n",x[(yyvsp[(3) - (4)].in)]);
+	else
+		if (name[(yyvsp[(3) - (4)].in)]==2)
+			printf("%g \n",y[(yyvsp[(3) - (4)].in)]);
+		else 
+			if(name[(yyvsp[(3) - (4)].in)]==3)
+				printf("%c \n",z[(yyvsp[(3) - (4)].in)]);
+			else 
+				if(name[(yyvsp[(3) - (4)].in)]==4)
+				{
+					int i;
+					for(i=1;i<w[(yyvsp[(3) - (4)].in)][0];i++)
+						printf("%c",w[(yyvsp[(3) - (4)].in)][i]);
+					printf("\n");
 				}
+				else 
+					printf("variable is not decleared");
+}
     break;
 
   case 21:
 /* Line 1792 of yacc.c  */
-#line 173 "Noname2.y"
-    { int i;
-			  for(i=1;i<(yyvsp[(3) - (4)].st)[0];i++)
-			   printf("%c",(yyvsp[(3) - (4)].st)[i]);
-
-			printf("\n");
- 
-				}
+#line 212 "Noname2.y"
+    {
+	 int i;
+	for(i=1;i<(yyvsp[(3) - (4)].st)[0];i++)
+	printf("%c",(yyvsp[(3) - (4)].st)[i]);
+	printf("\n");
+}
     break;
 
   case 22:
 /* Line 1792 of yacc.c  */
-#line 182 "Noname2.y"
-    {if(name[(yyvsp[(2) - (2)].in)]==0)
-                 name[(yyvsp[(2) - (2)].in)]=1;
-		else
-		   if(name[(yyvsp[(2) - (2)].in)]==1)
-		    printf("this variable is declared before in the same type \n");
-                   else 
-		    printf("this variable is declared before in the various type \n");
-
-			}
+#line 221 "Noname2.y"
+    {
+	if(name[(yyvsp[(2) - (2)].in)]==0)
+		name[(yyvsp[(2) - (2)].in)]=1;
+	else
+		if(name[(yyvsp[(2) - (2)].in)]==1)
+			printf("this variable is declared before in the same type \n");
+		else 
+			printf("this variable is declared before in the various type \n");
+}
     break;
 
   case 23:
 /* Line 1792 of yacc.c  */
-#line 191 "Noname2.y"
-    {if(name[(yyvsp[(2) - (4)].in)]==0)
-				{
-				name[(yyvsp[(2) - (4)].in)]=1;
-				x[(yyvsp[(2) - (4)].in)]=(yyvsp[(4) - (4)].fl);
-				}
-				else 
-				if(name[(yyvsp[(2) - (4)].in)]==1)
+#line 233 "Noname2.y"
+    {
+	if(name[(yyvsp[(2) - (4)].in)]==0)
+	{
+		name[(yyvsp[(2) - (4)].in)]=1;
+		x[(yyvsp[(2) - (4)].in)]=(yyvsp[(4) - (4)].fl);
+	}
+	else 
+		if(name[(yyvsp[(2) - (4)].in)]==1)
 			printf("this variable is declared before in the same type \n");
-			  else 
-		    printf("this variable is declared before in the various type \n");
-
-				}
+		else 
+			printf("this variable is declared before in the various type \n");
+}
     break;
 
   case 24:
 /* Line 1792 of yacc.c  */
-#line 203 "Noname2.y"
-    { if(name[(yyvsp[(2) - (2)].in)]==0)
-				name[(yyvsp[(2) - (2)].in)]=2;
-			  else 
-			  if(name[(yyvsp[(2) - (2)].in)]==2)
-		    printf("this variable is declared before in the same type \n");
-                   else 
-		    printf("this variable is declared before in the various type \n");
-
-				}
+#line 248 "Noname2.y"
+    {
+	if(name[(yyvsp[(2) - (2)].in)]==0)
+		name[(yyvsp[(2) - (2)].in)]=2;
+	else 
+		if(name[(yyvsp[(2) - (2)].in)]==2)
+			printf("this variable is declared before in the same type \n");
+		else 
+			printf("this variable is declared before in the various type \n");
+}
     break;
 
   case 25:
 /* Line 1792 of yacc.c  */
-#line 212 "Noname2.y"
-    {  if(name[(yyvsp[(2) - (4)].in)]==0)
-				{
-				name[(yyvsp[(2) - (4)].in)]=2;
-				y[(yyvsp[(2) - (4)].in)]=(yyvsp[(4) - (4)].fl);
-
-				}else 
-				if(name[(yyvsp[(2) - (4)].in)]==2)
-		    printf("this variable is declared before in the same type \n");
-                   else 
-		    printf("this variable is declared before in the various type \n");
-
-				}
+#line 260 "Noname2.y"
+    {
+	if(name[(yyvsp[(2) - (4)].in)]==0)
+	{
+		name[(yyvsp[(2) - (4)].in)]=2;
+		y[(yyvsp[(2) - (4)].in)]=(yyvsp[(4) - (4)].fl);
+	}
+	else 
+		if(name[(yyvsp[(2) - (4)].in)]==2)
+			printf("this variable is declared before in the same type \n");
+		else 
+			printf("this variable is declared before in the various type \n");
+}
     break;
 
   case 26:
 /* Line 1792 of yacc.c  */
-#line 225 "Noname2.y"
-    {if(name[(yyvsp[(2) - (2)].in)]==0)
-	       name[(yyvsp[(2) - (2)].in)]=3;
-	       else 
-	        if(name[(yyvsp[(2) - (2)].in)]==3)
-		 printf("this variable is decleare before in same type \n");
+#line 276 "Noname2.y"
+    {
+	if(name[(yyvsp[(2) - (2)].in)]==0)
+		name[(yyvsp[(2) - (2)].in)]=3;
+	else 
+		if(name[(yyvsp[(2) - (2)].in)]==3)
+			printf("this variable is decleare before in same type \n");
 		else 
-		 printf("this variable is decleared but in variouse type \n");}
+			printf("this variable is decleared but in variouse type \n");
+}
     break;
 
   case 27:
 /* Line 1792 of yacc.c  */
-#line 232 "Noname2.y"
+#line 289 "Noname2.y"
     {
-                   if(name[(yyvsp[(2) - (4)].in)]==0)
-		    {
-			name[(yyvsp[(2) - (4)].in)]=3;
-			z[(yyvsp[(2) - (4)].in)]=(yyvsp[(4) - (4)].ch);
-		    }
-		    else 
-		 if(name[(yyvsp[(2) - (4)].in)]==3)
-		 printf("this variable is decleare before in same type \n");
+	if(name[(yyvsp[(2) - (4)].in)]==0)
+	{
+		name[(yyvsp[(2) - (4)].in)]=3;
+		z[(yyvsp[(2) - (4)].in)]=(yyvsp[(4) - (4)].ch);
+	}
+	else 
+		if(name[(yyvsp[(2) - (4)].in)]==3)
+			printf("this variable is decleare before in same type \n");
 		else 
-		 printf("this variable is decleared but in variouse type \n");}
+			printf("this variable is decleared but in variouse type \n");
+}
     break;
 
   case 28:
 /* Line 1792 of yacc.c  */
-#line 243 "Noname2.y"
-    {if(name[(yyvsp[(2) - (2)].in)]==0)
-                        name[(yyvsp[(2) - (2)].in)]=4;
-			else 
-			if(name[(yyvsp[(2) - (2)].in)]==4)
-			 yyerror("declare in same type");
-			 else 
-			 yyerror("declear in vaious type");
-			}
+#line 305 "Noname2.y"
+    {
+	if(name[(yyvsp[(2) - (2)].in)]==0)
+		name[(yyvsp[(2) - (2)].in)]=4;
+	else 
+		if(name[(yyvsp[(2) - (2)].in)]==4)
+			yyerror("declare in same type");
+		else 
+			yyerror("declear in vaious type");
+}
     break;
 
   case 29:
 /* Line 1792 of yacc.c  */
-#line 251 "Noname2.y"
-    {  if(name[(yyvsp[(2) - (4)].in)]==0)
-                       {
-			name[(yyvsp[(2) - (4)].in)]=4;
-			int i;
-			for(i=0;i<(yyvsp[(4) - (4)].st)[0];i++)
-			 w[(yyvsp[(2) - (4)].in)][i]=(yyvsp[(4) - (4)].st)[i];
-			}
-			else 
-			if(name[(yyvsp[(2) - (4)].in)]==4)
-			 yyerror("declare in same type");
-			 else 
-			 yyerror("declear in vaious type");
-			}
+#line 318 "Noname2.y"
+    {
+	if(name[(yyvsp[(2) - (4)].in)]==0)
+	{
+		name[(yyvsp[(2) - (4)].in)]=4;
+		int i;
+		for(i=0;i<(yyvsp[(4) - (4)].st)[0];i++)
+			w[(yyvsp[(2) - (4)].in)][i]=(yyvsp[(4) - (4)].st)[i];
+	}
+	else 
+		if(name[(yyvsp[(2) - (4)].in)]==4)
+			yyerror("declare in same type");
+		else 
+			yyerror("declear in vaious type");
+}
     break;
 
   case 30:
 /* Line 1792 of yacc.c  */
-#line 269 "Noname2.y"
-    {if((yyvsp[(3) - (8)].in)==0)
-				printf("if not excuted \n");
-			        else 
-				printf("if is excuted \n");
-				}
+#line 335 "Noname2.y"
+    {
+	if((yyvsp[(3) - (8)].in)==0)
+		printf("if not excuted \n");
+	else 
+		printf("if is excuted \n");
+}
     break;
 
   case 31:
 /* Line 1792 of yacc.c  */
-#line 275 "Noname2.y"
-    {if((yyvsp[(3) - (12)].in)==0)
-				printf("else si excuted \n");
-			        else 
-				printf("if is excuted \n");
-				}
+#line 345 "Noname2.y"
+    {
+	 if((yyvsp[(3) - (12)].in)==0)
+		printf("else si excuted \n");
+	else 
+		printf("if is excuted \n");
+}
     break;
 
   case 32:
 /* Line 1792 of yacc.c  */
-#line 281 "Noname2.y"
-    {(yyval.in)=(yyvsp[(1) - (3)].in)&&(yyvsp[(3) - (3)].in);}
+#line 353 "Noname2.y"
+    {
+	(yyval.in)=(yyvsp[(1) - (3)].in)&&(yyvsp[(3) - (3)].in);
+}
     break;
 
   case 33:
 /* Line 1792 of yacc.c  */
-#line 282 "Noname2.y"
-    {(yyval.in)=(yyvsp[(1) - (3)].in)||(yyvsp[(3) - (3)].in);}
+#line 358 "Noname2.y"
+    {
+	(yyval.in)=(yyvsp[(1) - (3)].in)||(yyvsp[(3) - (3)].in);
+}
     break;
 
   case 34:
 /* Line 1792 of yacc.c  */
-#line 283 "Noname2.y"
-    {(yyval.in)=!(yyvsp[(2) - (2)].in);}
+#line 363 "Noname2.y"
+    {
+	(yyval.in)=!(yyvsp[(2) - (2)].in);
+}
     break;
 
   case 35:
 /* Line 1792 of yacc.c  */
-#line 284 "Noname2.y"
-    {(yyval.in)=(yyvsp[(1) - (1)].in);}
+#line 368 "Noname2.y"
+    {
+	(yyval.in)=(yyvsp[(1) - (1)].in);
+}
     break;
 
   case 36:
 /* Line 1792 of yacc.c  */
-#line 286 "Noname2.y"
+#line 374 "Noname2.y"
     {(yyval.in)=(yyvsp[(1) - (3)].fl)<(yyvsp[(3) - (3)].fl);}
     break;
 
   case 37:
 /* Line 1792 of yacc.c  */
-#line 287 "Noname2.y"
+#line 376 "Noname2.y"
     {(yyval.in)=(yyvsp[(1) - (3)].fl)>(yyvsp[(3) - (3)].fl);}
     break;
 
   case 38:
 /* Line 1792 of yacc.c  */
-#line 288 "Noname2.y"
+#line 378 "Noname2.y"
     {(yyval.in)=((yyvsp[(1) - (4)].fl)<=(yyvsp[(4) - (4)].fl));}
     break;
 
   case 39:
 /* Line 1792 of yacc.c  */
-#line 289 "Noname2.y"
+#line 380 "Noname2.y"
     {(yyval.in)=((yyvsp[(1) - (4)].fl)>=(yyvsp[(4) - (4)].fl));}
     break;
 
   case 40:
 /* Line 1792 of yacc.c  */
-#line 290 "Noname2.y"
+#line 382 "Noname2.y"
     {(yyval.in)=((yyvsp[(1) - (4)].fl)==(yyvsp[(4) - (4)].fl));}
     break;
 
   case 41:
 /* Line 1792 of yacc.c  */
-#line 291 "Noname2.y"
+#line 384 "Noname2.y"
     {(yyval.in)=((yyvsp[(1) - (4)].fl)!=(yyvsp[(4) - (4)].fl));}
     break;
 
   case 42:
 /* Line 1792 of yacc.c  */
-#line 293 "Noname2.y"
-    {   if(ln[(yyvsp[(3) - (3)].in)]==1)
-			{++loc[(yyvsp[(3) - (3)].in)]; 
-			(yyval.in)=1;
-			dd[0]=1;
-			dd[1]=(yyvsp[(3) - (3)].in);
-			dd[2]=1;
-			}
-			else 
-			if(name[(yyvsp[(3) - (3)].in)]==1)
-			{
+#line 389 "Noname2.y"
+    {
+	if(ln[(yyvsp[(3) - (3)].in)]==1)
+	{
+		++loc[(yyvsp[(3) - (3)].in)]; 
+		(yyval.in)=1;
+		dd[0]=1;
+		dd[1]=(yyvsp[(3) - (3)].in);
+		dd[2]=1;
+	}
+	else 
+		if(name[(yyvsp[(3) - (3)].in)]==1)
+		{
 			++x[(yyvsp[(3) - (3)].in)];
 			(yyval.in)=1;
 			dd[0]=1;
 			dd[1]=(yyvsp[(3) - (3)].in);
 			dd[2]=2;
-			}
+		}
+		else 
+			if(name[(yyvsp[(3) - (3)].in)]==0)
+				printf("this variable is not declare before \n");
 			else 
-			  if(name[(yyvsp[(3) - (3)].in)]==0)
-			   printf("this variable is not declare before \n");
-			   else 
-			   printf("this variable is declare with various type that not comptabile with the operation\n");
-			  }
+				printf("this variable is declare with various type that not comptabile with the operation\n");
+}
     break;
 
   case 43:
 /* Line 1792 of yacc.c  */
-#line 315 "Noname2.y"
-    {   if(ln[(yyvsp[(3) - (3)].in)]==1)
-			{
-			--loc[(yyvsp[(3) - (3)].in)];
-			(yyval.in)=1;
-			dd[0]=2;
-			dd[1]=(yyvsp[(3) - (3)].in);
-			dd[2]=1;
-			}
-			else 
-			if(name[(yyvsp[(3) - (3)].in)]==1)
-			{
+#line 416 "Noname2.y"
+    {
+	if(ln[(yyvsp[(3) - (3)].in)]==1)
+	{
+		--loc[(yyvsp[(3) - (3)].in)];
+		(yyval.in)=1;
+		dd[0]=2;
+		dd[1]=(yyvsp[(3) - (3)].in);
+		dd[2]=1;
+	}
+	else 
+		if(name[(yyvsp[(3) - (3)].in)]==1)
+		{
 			--x[(yyvsp[(3) - (3)].in)];
 			(yyval.in)=1;
 			dd[0]=2;
 			dd[1]=(yyvsp[(3) - (3)].in);
 			dd[2]=2;
-			}
-			}
+		}
+}
     break;
 
   case 44:
 /* Line 1792 of yacc.c  */
-#line 333 "Noname2.y"
-    {if(ln[(yyvsp[(2) - (3)].in)]==1)
-			{++loc[(yyvsp[(2) - (3)].in)]; 
-			(yyval.in)=1;
-			dd[0]=1;
-			dd[1]=(yyvsp[(2) - (3)].in);
-			dd[2]=1;
-			}
-			else 
-			if(name[(yyvsp[(2) - (3)].in)]==1)
-			{
+#line 438 "Noname2.y"
+    {
+	if(ln[(yyvsp[(2) - (3)].in)]==1)
+	{
+		++loc[(yyvsp[(2) - (3)].in)]; 
+		(yyval.in)=1;
+		dd[0]=1;
+		dd[1]=(yyvsp[(2) - (3)].in);
+		dd[2]=1;
+	}
+	else 
+		if(name[(yyvsp[(2) - (3)].in)]==1)
+		{
 			++x[(yyvsp[(2) - (3)].in)];
 			(yyval.in)=1;
 			dd[0]=1;
 			dd[1]=(yyvsp[(2) - (3)].in);
 			dd[2]=2;
-			}
+		}
+		else 
+			if(name[(yyvsp[(2) - (3)].in)]==0)
+				printf("this variable is not declare before \n");
 			else 
-			  if(name[(yyvsp[(2) - (3)].in)]==0)
-			   printf("this variable is not declare before \n");
-			   else 
-			   printf("this variable is declare with various type that not comptabile with the operation\n");
-			  }
+				printf("this variable is declare with various type that not comptabile with the operation\n");
+}
     break;
 
   case 45:
 /* Line 1792 of yacc.c  */
-#line 355 "Noname2.y"
-    {x[(yyvsp[(2) - (3)].in)]--;}
+#line 465 "Noname2.y"
+    {
+	x[(yyvsp[(2) - (3)].in)]--;
+}
     break;
 
   case 46:
 /* Line 1792 of yacc.c  */
-#line 357 "Noname2.y"
-    { (yyval.in)=-1;
-			if(name[(yyvsp[(1) - (3)].in)]==1)
-			x[(yyvsp[(1) - (3)].in)]=(yyvsp[(3) - (3)].fl);
-			else 
-			if(name[(yyvsp[(1) - (3)].in)]==0)
+#line 472 "Noname2.y"
+    {
+	(yyval.in)=-1;
+	if(name[(yyvsp[(1) - (3)].in)]==1)
+		x[(yyvsp[(1) - (3)].in)]=(yyvsp[(3) - (3)].fl);
+	else 
+		if(name[(yyvsp[(1) - (3)].in)]==0)
 			printf("this variable not declare before \n");
-			else 
+		else 
 			if(name[(yyvsp[(1) - (3)].in)]==2)
-			 y[(yyvsp[(1) - (3)].in)]=(yyvsp[(3) - (3)].fl);
-			 else 
-			 printf("this variable is not conpitable with operation\n");
-			   
-			}
+				y[(yyvsp[(1) - (3)].in)]=(yyvsp[(3) - (3)].fl);
+			else 
+				printf("this variable is not conpitable with operation\n");
+}
     break;
 
   case 47:
 /* Line 1792 of yacc.c  */
-#line 370 "Noname2.y"
-    {  if(ln[(yyvsp[(1) - (4)].in)]==1)
-			{
-			loc[(yyvsp[(1) - (4)].in)]=loc[(yyvsp[(1) - (4)].in)]+(yyvsp[(4) - (4)].fl);
-			(yyval.in)=(yyvsp[(4) - (4)].fl);
-			dd[0]=1;
-			dd[1]=(yyvsp[(1) - (4)].in);
-			dd[2]=1;
-			}
-			else 
-			if(name[(yyvsp[(1) - (4)].in)]==1)
-			{x[(yyvsp[(1) - (4)].in)]=x[(yyvsp[(1) - (4)].in)]+(yyvsp[(4) - (4)].fl);
+#line 488 "Noname2.y"
+    {
+	if(ln[(yyvsp[(1) - (4)].in)]==1)
+	{
+		loc[(yyvsp[(1) - (4)].in)]=loc[(yyvsp[(1) - (4)].in)]+(yyvsp[(4) - (4)].fl);
+		(yyval.in)=(yyvsp[(4) - (4)].fl);
+		dd[0]=1;
+		dd[1]=(yyvsp[(1) - (4)].in);
+		dd[2]=1;
+	}
+	else 
+		if(name[(yyvsp[(1) - (4)].in)]==1)
+		{
+			x[(yyvsp[(1) - (4)].in)]=x[(yyvsp[(1) - (4)].in)]+(yyvsp[(4) - (4)].fl);
 			(yyval.in)=(yyvsp[(4) - (4)].fl);
 			dd[0]=1;
 			dd[1]=(yyvsp[(1) - (4)].in);
 			dd[2]=2;
-			}
-			else 
+		}
+		else 
 			printf("wrong asdas \n");
-			}
+}
     break;
 
   case 48:
 /* Line 1792 of yacc.c  */
-#line 389 "Noname2.y"
+#line 511 "Noname2.y"
     {x[(yyvsp[(1) - (4)].in)]=x[(yyvsp[(1) - (4)].in)]-(yyvsp[(4) - (4)].fl);}
     break;
 
   case 49:
 /* Line 1792 of yacc.c  */
-#line 390 "Noname2.y"
+#line 514 "Noname2.y"
     {x[(yyvsp[(1) - (4)].in)]=x[(yyvsp[(1) - (4)].in)]*(yyvsp[(4) - (4)].fl);}
     break;
 
   case 50:
 /* Line 1792 of yacc.c  */
-#line 391 "Noname2.y"
-    {  if((yyvsp[(4) - (4)].fl)==0)
-			 printf("division by 0");
-			 else 
-			   x[(yyvsp[(1) - (4)].in)]=x[(yyvsp[(1) - (4)].in)]/(yyvsp[(4) - (4)].fl);
-			   
-                       }
+#line 518 "Noname2.y"
+    {
+	if((yyvsp[(4) - (4)].fl)==0)
+		printf("division by 0");
+	else 
+		x[(yyvsp[(1) - (4)].in)]=x[(yyvsp[(1) - (4)].in)]/(yyvsp[(4) - (4)].fl);	   
+}
     break;
 
   case 51:
 /* Line 1792 of yacc.c  */
-#line 397 "Noname2.y"
-    {if(name[(yyvsp[(1) - (3)].in)]==0)
-               printf("you must declear this variable before you assign value \n");
-	      else 
-	      if(name[(yyvsp[(1) - (3)].in)]==3)
-	       z[(yyvsp[(1) - (3)].in)]=(yyvsp[(3) - (3)].ch);
-	       else 
-	       yyerror("not combitable");
-		}
+#line 527 "Noname2.y"
+    {
+	if(name[(yyvsp[(1) - (3)].in)]==0)
+		printf("you must declear this variable before you assign value \n");
+	else 
+		if(name[(yyvsp[(1) - (3)].in)]==3)
+			z[(yyvsp[(1) - (3)].in)]=(yyvsp[(3) - (3)].ch);
+		else 
+			yyerror("not combitable");
+}
     break;
 
   case 52:
 /* Line 1792 of yacc.c  */
-#line 406 "Noname2.y"
-    {   if(name[(yyvsp[(1) - (3)].in)]==0)
-		    yyerror("not decleared ");
-		    else 
-		     if(name[(yyvsp[(1) - (3)].in)]==4)
-		        {int i;
+#line 540 "Noname2.y"
+    {
+	if(name[(yyvsp[(1) - (3)].in)]==0)
+		yyerror("not decleared ");
+	else 
+		if(name[(yyvsp[(1) - (3)].in)]==4)
+		{
+			int i;
 			for(i=0;i<(yyvsp[(3) - (3)].st)[0];i++)
-			    w[(yyvsp[(1) - (3)].in)][i]=(yyvsp[(3) - (3)].st)[i];
-			}
-			else 
-			 yyerror("not combitable ");
-			}
+				w[(yyvsp[(1) - (3)].in)][i]=(yyvsp[(3) - (3)].st)[i];
+		}
+		else 
+			yyerror("not combitable ");
+}
     break;
 
   case 53:
 /* Line 1792 of yacc.c  */
-#line 418 "Noname2.y"
-    {(yyval.fl)=(yyvsp[(1) - (3)].fl)+(yyvsp[(3) - (3)].fl);}
+#line 557 "Noname2.y"
+    {
+	(yyval.fl)=(yyvsp[(1) - (3)].fl)+(yyvsp[(3) - (3)].fl);
+}
     break;
 
   case 54:
 /* Line 1792 of yacc.c  */
-#line 419 "Noname2.y"
-    {(yyval.fl)=(yyvsp[(1) - (3)].fl)-(yyvsp[(3) - (3)].fl);}
+#line 563 "Noname2.y"
+    {
+	(yyval.fl)=(yyvsp[(1) - (3)].fl)-(yyvsp[(3) - (3)].fl);
+}
     break;
 
   case 55:
 /* Line 1792 of yacc.c  */
-#line 420 "Noname2.y"
-    {(yyval.fl)=(yyvsp[(1) - (1)].fl);}
+#line 569 "Noname2.y"
+    {
+	(yyval.fl)=(yyvsp[(1) - (1)].fl);
+}
     break;
 
   case 56:
 /* Line 1792 of yacc.c  */
-#line 422 "Noname2.y"
-    {(yyval.fl)=(yyvsp[(1) - (3)].fl)*(yyvsp[(3) - (3)].fl);}
+#line 576 "Noname2.y"
+    {
+	(yyval.fl)=(yyvsp[(1) - (3)].fl)*(yyvsp[(3) - (3)].fl);
+}
     break;
 
   case 57:
 /* Line 1792 of yacc.c  */
-#line 423 "Noname2.y"
-    { if((yyvsp[(3) - (3)].fl) == 0)
-			printf("divison by 0");
-			else 
-			(yyval.fl)=(yyvsp[(1) - (3)].fl)/(yyvsp[(3) - (3)].fl);
-			}
+#line 582 "Noname2.y"
+    {
+	if((yyvsp[(3) - (3)].fl) == 0)
+		printf("divison by 0");
+	else 
+		(yyval.fl)=(yyvsp[(1) - (3)].fl)/(yyvsp[(3) - (3)].fl);
+}
     break;
 
   case 58:
 /* Line 1792 of yacc.c  */
-#line 428 "Noname2.y"
-    {(yyval.fl)=(yyvsp[(1) - (1)].fl);}
+#line 591 "Noname2.y"
+    {
+	(yyval.fl)=(yyvsp[(1) - (1)].fl);
+}
     break;
 
   case 59:
 /* Line 1792 of yacc.c  */
-#line 430 "Noname2.y"
-    {(yyval.fl)=(yyvsp[(1) - (1)].in);}
+#line 598 "Noname2.y"
+    {
+	(yyval.fl)=(yyvsp[(1) - (1)].in);
+}
     break;
 
   case 60:
 /* Line 1792 of yacc.c  */
-#line 431 "Noname2.y"
-    {(yyval.fl)=(yyvsp[(2) - (3)].fl);}
+#line 604 "Noname2.y"
+    {
+	(yyval.fl)=(yyvsp[(2) - (3)].fl);
+}
     break;
 
   case 61:
 /* Line 1792 of yacc.c  */
-#line 432 "Noname2.y"
-    { if(name[(yyvsp[(1) - (1)].in)]==1)
+#line 610 "Noname2.y"
+    {
+	if(name[(yyvsp[(1) - (1)].in)]==1)
 		(yyval.fl)=x[(yyvsp[(1) - (1)].in)];
-		else
-		 if(name[(yyvsp[(1) - (1)].in)]==2)
-		  (yyval.fl)=y[(yyvsp[(1) - (1)].in)];
+	else
+		if(name[(yyvsp[(1) - (1)].in)]==2)
+			(yyval.fl)=y[(yyvsp[(1) - (1)].in)];
 		else 
-		  if (name[(yyvsp[(1) - (1)].in)]==0)
-		 printf("this variable is not declare before \n");
-		 else 
-			printf("this variable is not comptable iwth operation \n");
-		 
-		}
+			if (name[(yyvsp[(1) - (1)].in)]==0)
+				printf("this variable is not declare before \n");
+			else 
+				printf("this variable is not comptable iwth operation \n");	 
+}
     break;
 
   case 62:
 /* Line 1792 of yacc.c  */
-#line 444 "Noname2.y"
-    {(yyval.fl)=(yyvsp[(1) - (1)].fl);}
+#line 625 "Noname2.y"
+    {
+	(yyval.fl)=(yyvsp[(1) - (1)].fl);
+}
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 2142 "y.tab.c"
+#line 2197 "y.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2370,15 +2425,18 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 445 "Noname2.y"
+#line 628 "Noname2.y"
+
+
 
 int yyerror(char* s)
 {
-printf("error in %s \n",s);
-return 0;
+	printf("error in %s \n",s);
+	return 0;
 }
+
+
 int main()
 {
-yyparse();
-
+	yyparse();
 }
