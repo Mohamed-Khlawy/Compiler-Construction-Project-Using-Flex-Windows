@@ -66,8 +66,12 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 			loc[dd[1]]++;
 	}
 	else 
-		x[dd[1]]--;
-							
+	{	if(dd[0]==1)
+			x[dd[1]]--;
+		else if(dd[0]==2)
+			x[dd[1]]++;
+	}						
+
 	if(show[0]==1&& dd[0]==1)
 	{ 
 		//printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", $3, z, show[2], y, $7);
@@ -558,7 +562,10 @@ ID '=''-' stat
 }
    | 
 
-ID '=''*' stat {x[$1]=x[$1]*$4;}
+ID '=''*' stat 
+{
+	x[$1]=x[$1]*$4;
+}
    | 
 
 ID '=''/' stat 
