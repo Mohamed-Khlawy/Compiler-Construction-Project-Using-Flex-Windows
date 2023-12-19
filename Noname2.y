@@ -103,7 +103,7 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 	else 
 		if(show[0]==2&& dd[0]==2)
 		{
-			printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", $3, z, show[2], y, $7);
+			//printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", $3, z, show[2], y, $7);
 
 			if(y==1&&z==1)
 			{
@@ -530,11 +530,32 @@ ID '=''+' stat
 			dd[2]=2;
 		}
 		else 
-			printf("wrong asdas \n");
+			printf("wrong assignment \n");
 }
    | 
    
-ID '=''-' stat {x[$1]=x[$1]-$4;}
+ID '=''-' stat 
+{
+	if(ln[$1]==1)
+	{
+		loc[$1]=loc[$1]-$4;
+		$$=$4;
+		dd[0]=2;
+		dd[1]=$1;
+		dd[2]=1;
+	}
+	else 
+		if(name[$1]==1)
+		{
+			x[$1]=x[$1]-$4;
+			$$=$4;
+			dd[0]=2;
+			dd[1]=$1;
+			dd[2]=2;
+		}
+		else 
+			printf("wrong assignment \n");
+}
    | 
 
 ID '=''*' stat {x[$1]=x[$1]*$4;}
