@@ -512,9 +512,9 @@ static const yytype_uint16 yyrline[] =
       50,    51,    52,    55,   137,   142,   148,   155,   163,   175,
      187,   211,   220,   232,   247,   259,   275,   288,   304,   317,
      334,   344,   352,   357,   362,   367,   374,   376,   378,   380,
-     382,   384,   388,   415,   437,   464,   471,   487,   511,   514,
-     517,   526,   539,   556,   562,   568,   575,   581,   590,   597,
-     603,   609,   624
+     382,   384,   388,   415,   442,   469,   497,   513,   537,   540,
+     543,   552,   565,   582,   588,   594,   601,   607,   616,   623,
+     629,   635,   650
 };
 #endif
 
@@ -1960,12 +1960,17 @@ yyreduce:
 			dd[1]=(yyvsp[(3) - (3)].in);
 			dd[2]=2;
 		}
+		else 
+			if(name[(yyvsp[(3) - (3)].in)]==0)
+				printf("this variable is not declare before \n");
+			else 
+				printf("this variable is declare with various type that not comptabile with the operation\n");
 }
     break;
 
   case 44:
 /* Line 1792 of yacc.c  */
-#line 438 "Noname2.y"
+#line 443 "Noname2.y"
     {
 	if(ln[(yyvsp[(2) - (3)].in)]==1)
 	{
@@ -1994,15 +1999,36 @@ yyreduce:
 
   case 45:
 /* Line 1792 of yacc.c  */
-#line 465 "Noname2.y"
+#line 470 "Noname2.y"
     {
-	x[(yyvsp[(2) - (3)].in)]--;
+	if(ln[(yyvsp[(2) - (3)].in)]==1)
+	{
+		--loc[(yyvsp[(2) - (3)].in)];
+		(yyval.in)=1;
+		dd[0]=2;
+		dd[1]=(yyvsp[(2) - (3)].in);
+		dd[2]=1;
+	}
+	else 
+		if(name[(yyvsp[(2) - (3)].in)]==1)
+		{
+			--x[(yyvsp[(2) - (3)].in)];
+			(yyval.in)=1;
+			dd[0]=2;
+			dd[1]=(yyvsp[(2) - (3)].in);
+			dd[2]=2;
+		}
+		else 
+			if(name[(yyvsp[(2) - (3)].in)]==0)
+				printf("this variable is not declare before \n");
+			else 
+				printf("this variable is declare with various type that not comptabile with the operation\n");
 }
     break;
 
   case 46:
 /* Line 1792 of yacc.c  */
-#line 472 "Noname2.y"
+#line 498 "Noname2.y"
     {
 	(yyval.in)=-1;
 	if(name[(yyvsp[(1) - (3)].in)]==1)
@@ -2020,7 +2046,7 @@ yyreduce:
 
   case 47:
 /* Line 1792 of yacc.c  */
-#line 488 "Noname2.y"
+#line 514 "Noname2.y"
     {
 	if(ln[(yyvsp[(1) - (4)].in)]==1)
 	{
@@ -2046,19 +2072,19 @@ yyreduce:
 
   case 48:
 /* Line 1792 of yacc.c  */
-#line 511 "Noname2.y"
+#line 537 "Noname2.y"
     {x[(yyvsp[(1) - (4)].in)]=x[(yyvsp[(1) - (4)].in)]-(yyvsp[(4) - (4)].fl);}
     break;
 
   case 49:
 /* Line 1792 of yacc.c  */
-#line 514 "Noname2.y"
+#line 540 "Noname2.y"
     {x[(yyvsp[(1) - (4)].in)]=x[(yyvsp[(1) - (4)].in)]*(yyvsp[(4) - (4)].fl);}
     break;
 
   case 50:
 /* Line 1792 of yacc.c  */
-#line 518 "Noname2.y"
+#line 544 "Noname2.y"
     {
 	if((yyvsp[(4) - (4)].fl)==0)
 		printf("division by 0");
@@ -2069,7 +2095,7 @@ yyreduce:
 
   case 51:
 /* Line 1792 of yacc.c  */
-#line 527 "Noname2.y"
+#line 553 "Noname2.y"
     {
 	if(name[(yyvsp[(1) - (3)].in)]==0)
 		printf("you must declear this variable before you assign value \n");
@@ -2083,7 +2109,7 @@ yyreduce:
 
   case 52:
 /* Line 1792 of yacc.c  */
-#line 540 "Noname2.y"
+#line 566 "Noname2.y"
     {
 	if(name[(yyvsp[(1) - (3)].in)]==0)
 		yyerror("not decleared ");
@@ -2101,7 +2127,7 @@ yyreduce:
 
   case 53:
 /* Line 1792 of yacc.c  */
-#line 557 "Noname2.y"
+#line 583 "Noname2.y"
     {
 	(yyval.fl)=(yyvsp[(1) - (3)].fl)+(yyvsp[(3) - (3)].fl);
 }
@@ -2109,7 +2135,7 @@ yyreduce:
 
   case 54:
 /* Line 1792 of yacc.c  */
-#line 563 "Noname2.y"
+#line 589 "Noname2.y"
     {
 	(yyval.fl)=(yyvsp[(1) - (3)].fl)-(yyvsp[(3) - (3)].fl);
 }
@@ -2117,7 +2143,7 @@ yyreduce:
 
   case 55:
 /* Line 1792 of yacc.c  */
-#line 569 "Noname2.y"
+#line 595 "Noname2.y"
     {
 	(yyval.fl)=(yyvsp[(1) - (1)].fl);
 }
@@ -2125,7 +2151,7 @@ yyreduce:
 
   case 56:
 /* Line 1792 of yacc.c  */
-#line 576 "Noname2.y"
+#line 602 "Noname2.y"
     {
 	(yyval.fl)=(yyvsp[(1) - (3)].fl)*(yyvsp[(3) - (3)].fl);
 }
@@ -2133,7 +2159,7 @@ yyreduce:
 
   case 57:
 /* Line 1792 of yacc.c  */
-#line 582 "Noname2.y"
+#line 608 "Noname2.y"
     {
 	if((yyvsp[(3) - (3)].fl) == 0)
 		printf("divison by 0");
@@ -2144,7 +2170,7 @@ yyreduce:
 
   case 58:
 /* Line 1792 of yacc.c  */
-#line 591 "Noname2.y"
+#line 617 "Noname2.y"
     {
 	(yyval.fl)=(yyvsp[(1) - (1)].fl);
 }
@@ -2152,7 +2178,7 @@ yyreduce:
 
   case 59:
 /* Line 1792 of yacc.c  */
-#line 598 "Noname2.y"
+#line 624 "Noname2.y"
     {
 	(yyval.fl)=(yyvsp[(1) - (1)].in);
 }
@@ -2160,7 +2186,7 @@ yyreduce:
 
   case 60:
 /* Line 1792 of yacc.c  */
-#line 604 "Noname2.y"
+#line 630 "Noname2.y"
     {
 	(yyval.fl)=(yyvsp[(2) - (3)].fl);
 }
@@ -2168,7 +2194,7 @@ yyreduce:
 
   case 61:
 /* Line 1792 of yacc.c  */
-#line 610 "Noname2.y"
+#line 636 "Noname2.y"
     {
 	if(name[(yyvsp[(1) - (1)].in)]==1)
 		(yyval.fl)=x[(yyvsp[(1) - (1)].in)];
@@ -2185,7 +2211,7 @@ yyreduce:
 
   case 62:
 /* Line 1792 of yacc.c  */
-#line 625 "Noname2.y"
+#line 651 "Noname2.y"
     {
 	(yyval.fl)=(yyvsp[(1) - (1)].fl);
 }
@@ -2193,7 +2219,7 @@ yyreduce:
 
 
 /* Line 1792 of yacc.c  */
-#line 2197 "y.tab.c"
+#line 2223 "y.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2425,7 +2451,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 628 "Noname2.y"
+#line 654 "Noname2.y"
 
 
 

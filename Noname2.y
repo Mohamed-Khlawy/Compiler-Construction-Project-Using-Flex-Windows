@@ -431,6 +431,11 @@ inde: '+''+' ID
 			dd[1]=$3;
 			dd[2]=2;
 		}
+		else 
+			if(name[$3]==0)
+				printf("this variable is not declare before \n");
+			else 
+				printf("this variable is declare with various type that not comptabile with the operation\n");
 }
     | 
     
@@ -463,7 +468,28 @@ inde: '+''+' ID
     
 '-'ID'-' 
 {
-	x[$2]--;
+	if(ln[$2]==1)
+	{
+		--loc[$2];
+		$$=1;
+		dd[0]=2;
+		dd[1]=$2;
+		dd[2]=1;
+	}
+	else 
+		if(name[$2]==1)
+		{
+			--x[$2];
+			$$=1;
+			dd[0]=2;
+			dd[1]=$2;
+			dd[2]=2;
+		}
+		else 
+			if(name[$2]==0)
+				printf("this variable is not declare before \n");
+			else 
+				printf("this variable is declare with various type that not comptabile with the operation\n");
 }
 ;
 
