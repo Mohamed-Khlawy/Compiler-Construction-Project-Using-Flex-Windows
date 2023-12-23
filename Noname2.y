@@ -104,8 +104,7 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 		}
 	}
 
-	else 
-		if(show[0]==2&& dd[0]==2)
+	else if(show[0]==2&& dd[0]==2)
 		{
 			//printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", $3, z, show[2], y, $7);
 
@@ -134,7 +133,67 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 				for(i=$3; loc[show[1]] > show[2] ; x[dd[1]] -= $7 )
 					printf("loop is excuted \n");
 			}
-		}  
+		}
+		
+	else if (show[0] == 3 && dd[0] == 1)
+		{
+			if(y==1&&z==1)
+				{
+					int i;
+					for(i=$3; loc[show[1]] <= show[2] ; loc[dd[1]] += $7 )
+						printf("loop is excuted \n");
+				}
+
+			else if(y==0&&z==0)
+				{
+					int i;
+					for(i=$3; x[show[1]] <= show[2] ; x[dd[1]] += $7 )
+						printf("loop is excuted \n");
+				}
+
+			else  if(y==1&&z==0)
+				{
+					int i;
+					for(i=$3; x[show[1]] <= show[2] ; loc[dd[1]] += $7 )
+						printf("loop is excuted \n");
+				}
+
+			else  
+				{
+					int i;
+					for(i=$3; loc[show[1]] <= show[2] ; x[dd[1]] += $7 )
+						printf("loop is excuted \n");
+				}			
+		}
+
+		else if (show[0] == 4 && dd[0] == 2)
+			{
+				if(y==1&&z==1)
+				{
+					int i;
+					for(i=$3; loc[show[1]] >= show[2] ; loc[dd[1]] -= $7 )
+						printf("loop is excuted \n");
+				}
+
+				else if(y==0&&z==0)
+				{
+					int i;
+					for(i=$3; x[show[1]] >= show[2] ; x[dd[1]] -= $7 )
+						printf("loop is excuted \n");
+				}
+				else  if(y==1&&z==0)
+				{
+					int i;
+					for(i=$3; x[show[1]] >= show[2] ; loc[dd[1]] -= $7 )
+						printf("loop is excuted \n");
+				}
+				else  
+				{
+					int i;
+					for(i=$3; loc[show[1]] >= show[2] ; x[dd[1]] -= $7 )
+						printf("loop is excuted \n");
+				}
+			}
 }
 
 
@@ -162,7 +221,20 @@ ID '>'  stat
 	show[1]=$1;
 	show[2]=$3;
 }
-
+	| 
+ID '<''=' stat
+{
+	show[0]=3;
+	show[1]=$1;
+	show[2]=$4;
+}
+	|
+ID '>''=' stat
+{
+	show[0]=4;
+	show[1]=$1;
+	show[2]=$4;
+}
 
 idd: INT ID '=' stat  
 {
