@@ -66,6 +66,8 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 			loc[dd[1]]++;
 		else if (dd[0] == 3)
 			loc[dd[1]] /= 2;
+		else if (dd[0] == 4)
+			loc[dd[1]] *= 2;
 	}
 	else 
 	{	if(dd[0]==1)
@@ -74,6 +76,8 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 			x[dd[1]]++;
 		else if (dd[0] == 3)
 			x[dd[1]] /= 2;
+		else if (dd[0] == 4)
+			x[dd[1]] *= 2;
 	}						
 
 	if(show[0]==1&& dd[0]==1)
@@ -261,6 +265,66 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 						printf("loop is excuted \n");
 				}
 			}
+
+		else if (show[0] == 4 && dd[0] == 4)
+			{
+				if(y==1&&z==1)
+				{
+					int i;
+					for(i=$3; loc[show[1]] >= show[2] ; loc[dd[1]] /= $7 )
+						printf("loop is excuted \n");
+				}
+
+				else if(y==0&&z==0)
+				{
+					int i;
+					for(i=$3; x[show[1]] >= show[2] ; x[dd[1]] /= $7 )
+						printf("loop is excuted \n");
+				}
+				else  if(y==1&&z==0)
+				{
+					int i;
+					for(i=$3; x[show[1]] >= show[2] ; loc[dd[1]] /= $7 )
+						printf("loop is excuted \n");
+				}
+				else  
+				{
+					int i;
+					for(i=$3; loc[show[1]] >= show[2] ; x[dd[1]] /= $7 )
+						printf("loop is excuted \n");
+				}
+			}
+
+		else if(show[0]==2&& dd[0]==4)
+		{
+			//printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", $3, z, show[2], y, $7);
+
+			if(y==1&&z==1)
+			{
+				int i;
+				for(i=$3; loc[show[1]] > show[2] ; loc[dd[1]] /= $7 )
+					printf("loop is excuted \n");
+			}
+
+			else if(y==0&&z==0)
+			{
+				int i;
+				for(i=$3; x[show[1]] > show[2] ; x[dd[1]] /= $7 )
+					printf("loop is excuted \n");
+			}
+			else  if(y==1&&z==0)
+			{
+				int i;
+				for(i=$3; x[show[1]] > show[2] ; loc[dd[1]] /= $7 )
+					printf("loop is excuted \n");
+			}
+			else  
+			{
+				int i;
+				for(i=$3; loc[show[1]] > show[2] ; x[dd[1]] /= $7 )
+					printf("loop is excuted \n");
+			}
+		}
 }
 
 
@@ -714,7 +778,7 @@ ID '=''*' stat
 	else 
 		if(name[$1]==1)
 		{
-			x[$1]=x[$1]+$4;
+			x[$1]=x[$1]*$4;
 			$$=$4;
 			dd[0]=3;
 			dd[1]=$1;
@@ -730,7 +794,24 @@ ID '=''/' stat
 	if($4==0)
 		printf("division by 0");
 	else 
-		x[$1]=x[$1]/$4;	   
+		if(ln[$1]==1)
+		{
+			loc[$1]=loc[$1]/$4;
+			$$=$4;
+			dd[0]=4;
+			dd[1]=$1;
+			dd[2]=1;
+		}
+		else  if(name[$1]==1)
+		{
+			x[$1]=x[$1]/$4;
+			$$=$4;
+			dd[0]=4;
+			dd[1]=$1;
+			dd[2]=2;
+		}
+		else 
+			printf("wrong assignment \n");   
 }
 | 
 
