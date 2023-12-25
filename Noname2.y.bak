@@ -55,7 +55,7 @@ f: stat
 
 while: WHILE '(' condition ')' '{' s ';' count '}'
 {
-	if (dd[2]==1)
+	if (dd[2]==2)
 	{
 		if(dd[0]==1)
 			x[dd[1]]--;

@@ -75,6 +75,69 @@ while: WHILE '(' condition ')' '{' s ';' count '}'
 			x[dd[1]] += $8;
 		}
 	}
+
+	else if (show[0] == 3 && dd[0] == 1)
+	{
+		while ( x[show[1]] <= show[2] )
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] += $8;
+		}
+	}
+
+	else if (show[0] == 1 && dd[0] == 3)
+	{
+		while ( x[show[1]] < show[2] )
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] *= $8;
+		}
+	}
+
+	else if (show[0] == 3 && dd[0] == 3)
+	{
+		while ( x[show[1]] <= show[2] )
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] *= $8;
+		}
+	}
+
+	else if (show[0] == 2 && dd[0] == 2)
+	{
+		while ( x[show[1]] > show[2] )
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] -= $8;
+		}
+	}
+
+	else if (show[0] == 4 && dd[0] == 2)
+	{
+		while ( x[show[1]] >= show[2] )
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] -= $8;
+		}
+	}
+
+	else if (show[0] == 2 && dd[0] == 4)
+	{
+		while ( x[show[1]] > show[2] )
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] /= $8;
+		}
+	}
+
+	else if (show[0] == 4 && dd[0] == 4)
+	{
+		while ( x[show[1]] >= show[2] )
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] /= $8;
+		}
+	}
 }
 
 condition: ID '<' stat 
@@ -82,6 +145,27 @@ condition: ID '<' stat
 	show[0]=1;
 	show[1]=$1;
 	show[2]=$3;
+}
+	| 
+ID '>'  stat 
+{
+	show[0]=2;
+	show[1]=$1;
+	show[2]=$3;
+}
+	| 
+ID '<''=' stat
+{
+	show[0]=3;
+	show[1]=$1;
+	show[2]=$4;
+}
+	|
+ID '>''=' stat
+{
+	show[0]=4;
+	show[1]=$1;
+	show[2]=$4;
 }
 
 for: FOR '(' idd ';' cond ';' count ')' '{'s'}' 
