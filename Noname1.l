@@ -8,6 +8,8 @@
 %%
 "for" {return FOR;}
 
+"while" {return WHILE;}
+
 \".+\" {  
 	yylval.st[0]=yyleng-1;
 	int i;
@@ -47,7 +49,7 @@
 	return ID;
 }
 
-[-+;/*()=><!&|{}] {
+[-+;/*()=><!&|{}#] {
 	return *yytext;
 }
 

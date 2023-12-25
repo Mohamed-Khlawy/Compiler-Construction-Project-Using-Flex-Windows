@@ -27,7 +27,7 @@
 
 %token <st> CHH
 
-%token HBL IF THEN ELSE	INT HALMBZ FLOAT CHAR CHAIN FOR
+%token HBL IF THEN ELSE	INT HALMBZ FLOAT CHAR CHAIN FOR WHILE
 
 %type <fl>  stat term fact
 
@@ -50,7 +50,39 @@ f: stat
 	 | dec
 	 | pr
 	 | for
+	 | while
 ;
+
+while: WHILE '(' condition ')' '{' s ';' count '}'
+{
+	if (dd[2]==2)
+	{
+		if(dd[0]==1)
+			x[dd[1]]--;
+		else if(dd[0]==2)
+			x[dd[1]]++;
+		else if (dd[0] == 3)
+			x[dd[1]] /= 2;
+		else if (dd[0] == 4)
+			x[dd[1]] *= 2;
+	}
+
+	if (show[0] == 1 && dd[0] == 1)
+	{
+		while ( x[show[1]] < show[2] )
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] += $8;
+		}
+	}
+}
+
+condition: ID '<' stat 
+{
+	show[0]=1;
+	show[1]=$1;
+	show[2]=$3;
+}
 
 for: FOR '(' idd ';' cond ';' count ')' '{'s'}' 
 { 
