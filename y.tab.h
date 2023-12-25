@@ -61,7 +61,8 @@ extern int yydebug;
      CHAR = 270,
      CHAIN = 271,
      FOR = 272,
-     WHILE = 273
+     WHILE = 273,
+     DO = 274
    };
 #endif
 /* Tokens.  */
@@ -81,6 +82,7 @@ extern int yydebug;
 #define CHAIN 271
 #define FOR 272
 #define WHILE 273
+#define DO 274
 
 
 
@@ -97,7 +99,7 @@ typedef union YYSTYPE
 
 
 /* Line 2058 of yacc.c  */
-#line 101 "y.tab.h"
+#line 103 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

@@ -27,7 +27,7 @@
 
 %token <st> CHH
 
-%token HBL IF THEN ELSE	INT HALMBZ FLOAT CHAR CHAIN FOR WHILE
+%token HBL IF THEN ELSE	INT HALMBZ FLOAT CHAR CHAIN FOR WHILE DO
 
 %type <fl>  stat term fact
 
@@ -51,7 +51,116 @@ f: stat
 	 | pr
 	 | for
 	 | while
+	 | do
 ;
+
+do: DO '{' s ';' count '}' WHILE '(' condition ')'
+{
+	if (dd[2]==2)
+	{
+		if(dd[0]==1)
+			x[dd[1]]--;
+		else if(dd[0]==2)
+			x[dd[1]]++;
+		else if (dd[0] == 3)
+			x[dd[1]] /= 2;
+		else if (dd[0] == 4)
+			x[dd[1]] *= 2;
+	}
+
+	if (show[0] == 1 && dd[0] == 1)
+	{
+		do 
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] += $5;
+		}
+
+		while ( x[show[1]] < show[2] );
+	}
+
+	else if (show[0] == 3 && dd[0] == 1)
+	{
+		do 
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] += $5;
+		}
+
+		while ( x[show[1]] <= show[2] );
+	}
+
+	else if (show[0] == 1 && dd[0] == 3)
+	{
+		do 
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] *= $5;
+		}
+
+		while ( x[show[1]] < show[2] );
+	}
+
+	else if (show[0] == 3 && dd[0] == 3)
+	{
+		do 
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] *= $5;
+		}
+
+		while ( x[show[1]] <= show[2] );
+	}
+
+	else if (show[0] == 2 && dd[0] == 2)
+	{
+		do 
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] -= $5;
+		}
+
+		while ( x[show[1]] > show[2] );
+	}
+
+	else if (show[0] == 4 && dd[0] == 2)
+	{
+		do 
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] -= $5;
+		}
+
+		while ( x[show[1]] >= show[2] );
+	}
+
+	else if (show[0] == 2 && dd[0] == 4)
+	{
+		do 
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] /= $5;
+		}
+
+		while ( x[show[1]] > show[2] );
+	}
+
+	else if (show[0] == 4 && dd[0] == 4)
+	{
+		do 
+		{
+			printf("loop is excuted \n");
+			x[dd[1]] /= $5;
+		}
+
+		while ( x[show[1]] >= show[2] );
+	}
+
+	else 
+	{
+		printf("This loop syntax is not true, please correct it!!! \n");
+	}
+}
 
 while: WHILE '(' condition ')' '{' s ';' count '}'
 {
@@ -137,6 +246,11 @@ while: WHILE '(' condition ')' '{' s ';' count '}'
 			printf("loop is excuted \n");
 			x[dd[1]] /= $8;
 		}
+	}
+
+	else 
+	{
+		printf("This loop syntax is not true, please correct it!!! \n");
 	}
 }
 
@@ -322,7 +436,7 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 				}			
 		}
 
-		else if (show[0] == 3 && dd[0] == 3)
+	else if (show[0] == 3 && dd[0] == 3)
 		{
 			if(y==1&&z==1)
 				{
@@ -382,7 +496,7 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 				}
 			}
 
-		else if (show[0] == 4 && dd[0] == 4)
+	else if (show[0] == 4 && dd[0] == 4)
 			{
 				if(y==1&&z==1)
 				{
@@ -411,7 +525,7 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 				}
 			}
 
-		else if(show[0]==2&& dd[0]==4)
+	else if(show[0]==2&& dd[0]==4)
 		{
 			//printf("i= %d 3=%d z= %d, show2 = %d,dd1= %d, $7 = %d \n ", $3, z, show[2], y, $7);
 
@@ -441,6 +555,11 @@ for: FOR '(' idd ';' cond ';' count ')' '{'s'}'
 					printf("loop is excuted \n");
 			}
 		}
+
+	else 
+	{
+		printf("This loop syntax is not true, please correct it!!! \n");
+	}
 }
 
 

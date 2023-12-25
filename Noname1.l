@@ -10,6 +10,8 @@
 
 "while" {return WHILE;}
 
+"do" {return DO;}
+
 \".+\" {  
 	yylval.st[0]=yyleng-1;
 	int i;
