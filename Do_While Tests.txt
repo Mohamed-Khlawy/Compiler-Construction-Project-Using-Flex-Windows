@@ -1,0 +1,25 @@
+1) do {5+5 ; ++i} while (i < 6);
+
+2) do {5+5 ; ++i} while (i <= 6);
+
+3) do {5+5 ; i=+1} while (i < 6);
+
+4) do {5+5 ; i=+1} while (i <= 6);
+
+5) do {5+5 ; i=*2} while (i < 8);
+
+6) do {5+5 ; i=*2} while (i <= 8);
+
+7) do {5+5 ; --i} while (i > 1);
+
+8) do {5+5 ; --i} while (i >= 1);
+
+9) do {5+5 ; i=-1} while (i > 1);
+
+10) do {5+5 ; i=-1} while (i >= 1);
+
+11) do {5+5 ; i=/2} while (i > 2);
+
+12) do {5+5 ; i=/2} while (i >= 2);
+
+13) do {5+5; halmbz (i) ; i=/2} while (i >= 2);
